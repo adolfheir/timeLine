@@ -1,111 +1,612 @@
+// import moment from "moment"
+
 // 定制缩放比例及缩放的宽度
-let zoomTree = [
-    {},
-    { unit: "d", width: 35000, level: 1, label: "30 minutes" },
-    { unit: "d", width: 17600, level: 2, label: "1 hour" },
-    { unit: "d", width: 8800, level: 3, label: "2 hours" },
-    { unit: "d", width: 4400, level: 4, label: "5 hours" },
-    { unit: "d", width: 2200, level: 5, label: "10 hours" },
-    { unit: "d", width: 1100, level: 6, label: "1 DAY" },
-    { unit: "d", width: 550, level: 7, label: "40 hours" },
-    { unit: "d", width: 432, level: 8, label: "2 days" },
-    { unit: "d", width: 343, level: 9, label: "2.5 days" },
-    { unit: "d", width: 272, level: 10, label: "3 days" },
-    { unit: "d", width: 216, level: 11, label: "4 days" },
-    { unit: "d", width: 171, level: 12, label: "5 days" },
-    { unit: "d", width: 136, level: 13, label: "1 WEEK" },
-    { unit: "d", width: 108, level: 14, label: "8 days" },
+let zoomTree = [{},
+    {
+        unit: "d",
+        width: 35000,
+        level: 1,
+        label: "30 minutes"
+    },
+    {
+        unit: "d",
+        width: 17600,
+        level: 2,
+        label: "1 hour"
+    },
+    {
+        unit: "d",
+        width: 8800,
+        level: 3,
+        label: "2 hours"
+    },
+    {
+        unit: "d",
+        width: 4400,
+        level: 4,
+        label: "5 hours"
+    },
+    {
+        unit: "d",
+        width: 2200,
+        level: 5,
+        label: "10 hours"
+    },
+    {
+        unit: "d",
+        width: 1100,
+        level: 6,
+        label: "1 DAY"
+    },
+    {
+        unit: "d",
+        width: 550,
+        level: 7,
+        label: "40 hours"
+    },
+    {
+        unit: "d",
+        width: 432,
+        level: 8,
+        label: "2 days"
+    },
+    {
+        unit: "d",
+        width: 343,
+        level: 9,
+        label: "2.5 days"
+    },
+    {
+        unit: "d",
+        width: 272,
+        level: 10,
+        label: "3 days"
+    },
+    {
+        unit: "d",
+        width: 216,
+        level: 11,
+        label: "4 days"
+    },
+    {
+        unit: "d",
+        width: 171,
+        level: 12,
+        label: "5 days"
+    },
+    {
+        unit: "d",
+        width: 136,
+        level: 13,
+        label: "1 WEEK"
+    },
+    {
+        unit: "d",
+        width: 108,
+        level: 14,
+        label: "8 days"
+    },
     /* 108 * 30 = equiv to a 3240 month */
-    { unit: "M", width: 2509, level: 15, label: "10 days" },
-    { unit: "M", width: 1945, level: 16, label: "2 WEEKS" },
-    { unit: "M", width: 1508, level: 17, label: "18 days" },
-    { unit: "M", width: 1169, level: 18, label: "3 weeks" },
-    { unit: "M", width: 913, level: 19, label: "1 MONTH" },
-    { unit: "M", width: 719, level: 20, label: "5 weeks" },
-    { unit: "M", width: 566, level: 21, label: "6 weeks" },
-    { unit: "M", width: 453, level: 22, label: "2 MONTHS" },
+    {
+        unit: "M",
+        width: 2509,
+        level: 15,
+        label: "10 days"
+    },
+    {
+        unit: "M",
+        width: 1945,
+        level: 16,
+        label: "2 WEEKS"
+    },
+    {
+        unit: "M",
+        width: 1508,
+        level: 17,
+        label: "18 days"
+    },
+    {
+        unit: "M",
+        width: 1169,
+        level: 18,
+        label: "3 weeks"
+    },
+    {
+        unit: "M",
+        width: 913,
+        level: 19,
+        label: "1 MONTH"
+    },
+    {
+        unit: "M",
+        width: 719,
+        level: 20,
+        label: "5 weeks"
+    },
+    {
+        unit: "M",
+        width: 566,
+        level: 21,
+        label: "6 weeks"
+    },
+    {
+        unit: "M",
+        width: 453,
+        level: 22,
+        label: "2 MONTHS"
+    },
 
-    { unit: "M", width: 362, level: 23, label: "10 weeks" },
-    { unit: "M", width: 290, level: 24, label: "3 MONTHS" },
-    { unit: "M", width: 232, level: 25, label: "4 months" },
-    { unit: "M", width: 186, level: 26, label: "5 months" },
-    { unit: "M", width: 148, level: 27, label: "6 MONTHS" },
-    { unit: "M", width: 119, level: 28, label: "7 months" },
-    { unit: "M", width: 95, level: 29, label: "9 months" },
-    { unit: "M", width: 76, level: 30, label: "1 YEAR" },
+    {
+        unit: "M",
+        width: 362,
+        level: 23,
+        label: "10 weeks"
+    },
+    {
+        unit: "M",
+        width: 290,
+        level: 24,
+        label: "3 MONTHS"
+    },
+    {
+        unit: "M",
+        width: 232,
+        level: 25,
+        label: "4 months"
+    },
+    {
+        unit: "M",
+        width: 186,
+        level: 26,
+        label: "5 months"
+    },
+    {
+        unit: "M",
+        width: 148,
+        level: 27,
+        label: "6 MONTHS"
+    },
+    {
+        unit: "M",
+        width: 119,
+        level: 28,
+        label: "7 months"
+    },
+    {
+        unit: "M",
+        width: 95,
+        level: 29,
+        label: "9 months"
+    },
+    {
+        unit: "M",
+        width: 76,
+        level: 30,
+        label: "1 YEAR"
+    },
     /* 76 * 12 = equiv to a 912 year */
-    { unit: "y", width: 723, level: 31, label: "15 months" },
-    { unit: "y", width: 573, level: 32, label: "18 months" },
-    { unit: "y", width: 455, level: 33, label: "2 YEARS" },
-    { unit: "y", width: 361, level: 34, label: "2.5 years" },
-    { unit: "y", width: 286, level: 35, label: "3 years" },
-    { unit: "y", width: 227, level: 36, label: "4 years" },
-    { unit: "y", width: 179, level: 37, label: "5 years" },
-    { unit: "y", width: 142, level: 38, label: "6 years" },
-    { unit: "y", width: 113, level: 39, label: "8 years" },
-    { unit: "y", width: 89, level: 40, label: "10 years" },
-    { unit: "de", width: 705, level: 41, label: "13 years" },
-    { unit: "de", width: 559, level: 42, label: "16 years" },
-    { unit: "de", width: 443, level: 43, label: "20 years" },
+    {
+        unit: "y",
+        width: 723,
+        level: 31,
+        label: "15 months"
+    },
+    {
+        unit: "y",
+        width: 573,
+        level: 32,
+        label: "18 months"
+    },
+    {
+        unit: "y",
+        width: 455,
+        level: 33,
+        label: "2 YEARS"
+    },
+    {
+        unit: "y",
+        width: 361,
+        level: 34,
+        label: "2.5 years"
+    },
+    {
+        unit: "y",
+        width: 286,
+        level: 35,
+        label: "3 years"
+    },
+    {
+        unit: "y",
+        width: 227,
+        level: 36,
+        label: "4 years"
+    },
+    {
+        unit: "y",
+        width: 179,
+        level: 37,
+        label: "5 years"
+    },
+    {
+        unit: "y",
+        width: 142,
+        level: 38,
+        label: "6 years"
+    },
+    {
+        unit: "y",
+        width: 113,
+        level: 39,
+        label: "8 years"
+    },
+    {
+        unit: "y",
+        width: 89,
+        level: 40,
+        label: "10 years"
+    },
+    {
+        unit: "de",
+        width: 705,
+        level: 41,
+        label: "13 years"
+    },
+    {
+        unit: "de",
+        width: 559,
+        level: 42,
+        label: "16 years"
+    },
+    {
+        unit: "de",
+        width: 443,
+        level: 43,
+        label: "20 years"
+    },
 
-    { unit: "de", width: 302, level: 44, label: "25 years" },
-    { unit: "de", width: 240, level: 45, label: "30 years" },
-    { unit: "de", width: 190, level: 46, label: "40 years" },
-    { unit: "de", width: 150, level: 47, label: "50 years" },
-    { unit: "de", width: 120, level: 48, label: "65 years" },
-    { unit: "de", width: 95, level: 49, label: "80 years" },
-    { unit: "de", width: 76, level: 50, label: "100 YEARS" },
-    { unit: "ce", width: 600, level: 51, label: "130 years" },
-    { unit: "ce", width: 480, level: 52, label: "160 years" },
-    { unit: "ce", width: 381, level: 53, label: "200 YEARS" },
-    { unit: "ce", width: 302, level: 54, label: "250 years" },
-    { unit: "ce", width: 240, level: 55, label: "300 years" },
-    { unit: "ce", width: 190, level: 56, label: "400 years" },
-    { unit: "ce", width: 150, level: 57, label: "500 YEARS" },
-    { unit: "ce", width: 120, level: 58, label: "600 years" },
-    { unit: "ce", width: 95, level: 59, label: "1000 YEARS" },
-    { unit: "ce", width: 76, level: 60, label: "1100 years" },
-    { unit: "thou", width: 603, level: 61, label: "1500 years" },
+    {
+        unit: "de",
+        width: 302,
+        level: 44,
+        label: "25 years"
+    },
+    {
+        unit: "de",
+        width: 240,
+        level: 45,
+        label: "30 years"
+    },
+    {
+        unit: "de",
+        width: 190,
+        level: 46,
+        label: "40 years"
+    },
+    {
+        unit: "de",
+        width: 150,
+        level: 47,
+        label: "50 years"
+    },
+    {
+        unit: "de",
+        width: 120,
+        level: 48,
+        label: "65 years"
+    },
+    {
+        unit: "de",
+        width: 95,
+        level: 49,
+        label: "80 years"
+    },
+    {
+        unit: "de",
+        width: 76,
+        level: 50,
+        label: "100 YEARS"
+    },
+    {
+        unit: "ce",
+        width: 600,
+        level: 51,
+        label: "130 years"
+    },
+    {
+        unit: "ce",
+        width: 480,
+        level: 52,
+        label: "160 years"
+    },
+    {
+        unit: "ce",
+        width: 381,
+        level: 53,
+        label: "200 YEARS"
+    },
+    {
+        unit: "ce",
+        width: 302,
+        level: 54,
+        label: "250 years"
+    },
+    {
+        unit: "ce",
+        width: 240,
+        level: 55,
+        label: "300 years"
+    },
+    {
+        unit: "ce",
+        width: 190,
+        level: 56,
+        label: "400 years"
+    },
+    {
+        unit: "ce",
+        width: 150,
+        level: 57,
+        label: "500 YEARS"
+    },
+    {
+        unit: "ce",
+        width: 120,
+        level: 58,
+        label: "600 years"
+    },
+    {
+        unit: "ce",
+        width: 95,
+        level: 59,
+        label: "1000 YEARS"
+    },
+    {
+        unit: "ce",
+        width: 76,
+        level: 60,
+        label: "1100 years"
+    },
+    {
+        unit: "thou",
+        width: 603,
+        level: 61,
+        label: "1500 years"
+    },
 
-    { unit: "thou", width: 478, level: 62, label: "2000 years" },
-    { unit: "thou", width: 379, level: 63, label: "2500 years" },
-    { unit: "thou", width: 301, level: 64, label: "3000 years" },
-    { unit: "thou", width: 239, level: 65, label: "4000 years" },
-    { unit: "thou", width: 190, level: 66, label: "5000 YEARS" },
-    { unit: "thou", width: 150, level: 67, label: "6000 years" },
-    { unit: "thou", width: 120, level: 68, label: "7500 years" },
-    { unit: "thou", width: 95, level: 69, label: "10,000 YEARS" },
-    { unit: "thou", width: 76, level: 70, label: "12,000 years" },
-    { unit: "tenthou", width: 603, level: 71, label: "15,000 years" },
-    { unit: "tenthou", width: 358, level: 72, label: "25,000 years" },
-    { unit: "tenthou", width: 213, level: 73, label: "40,000 years" },
-    { unit: "tenthou", width: 126, level: 74, label: "70,000 years" },
-    { unit: "tenthou", width: 76, level: 75, label: "100,000 YEARS" },
-    { unit: "hundredthou", width: 603, level: 76, label: "150,000 years" },
-    { unit: "hundredthou", width: 358, level: 77, label: "250,000 years" },
-    { unit: "hundredthou", width: 213, level: 78, label: "400,000 years" },
-    { unit: "hundredthou", width: 126, level: 79, label: "700,000 years" },
-    { unit: "hundredthou", width: 76, level: 80, label: "1 million years" },
-    { unit: "mill", width: 603, level: 81, label: "1.5 million years" },
-    { unit: "mill", width: 358, level: 82, label: "3 million years" },
-    { unit: "mill", width: 213, level: 83, label: "4 million years" },
-    { unit: "mill", width: 126, level: 84, label: "6 million years" },
-    { unit: "mill", width: 76, level: 85, label: "10 million years" },
-    { unit: "tenmill", width: 603, level: 86, label: "15 million years" },
-    { unit: "tenmill", width: 358, level: 87, label: "25 million years" },
-    { unit: "tenmill", width: 213, level: 88, label: "40 million years" },
-    { unit: "tenmill", width: 126, level: 89, label: "70 million years" },
-    { unit: "tenmill", width: 76, level: 90, label: "100 million years" },
-    { unit: "hundredmill", width: 603, level: 91, label: "120 million years" },
-    { unit: "hundredmill", width: 358, level: 92, label: "200 million years" },
-    { unit: "hundredmill", width: 213, level: 93, label: "300 million years" },
-    { unit: "hundredmill", width: 126, level: 94, label: "500 million years" },
-    { unit: "hundredmill", width: 76, level: 95, label: "1 billion years" },
-    { unit: "bill", width: 603, level: 96, label: "15 million years" },
-    { unit: "bill", width: 358, level: 97, label: "30 million years" },
-    { unit: "bill", width: 213, level: 98, label: "50 million years" },
-    { unit: "bill", width: 126, level: 99, label: "80 million years" },
-    { unit: "bill", width: 76, level: 100, label: "100 billion years" }
+    {
+        unit: "thou",
+        width: 478,
+        level: 62,
+        label: "2000 years"
+    },
+    {
+        unit: "thou",
+        width: 379,
+        level: 63,
+        label: "2500 years"
+    },
+    {
+        unit: "thou",
+        width: 301,
+        level: 64,
+        label: "3000 years"
+    },
+    {
+        unit: "thou",
+        width: 239,
+        level: 65,
+        label: "4000 years"
+    },
+    {
+        unit: "thou",
+        width: 190,
+        level: 66,
+        label: "5000 YEARS"
+    },
+    {
+        unit: "thou",
+        width: 150,
+        level: 67,
+        label: "6000 years"
+    },
+    {
+        unit: "thou",
+        width: 120,
+        level: 68,
+        label: "7500 years"
+    },
+    {
+        unit: "thou",
+        width: 95,
+        level: 69,
+        label: "10,000 YEARS"
+    },
+    {
+        unit: "thou",
+        width: 76,
+        level: 70,
+        label: "12,000 years"
+    },
+    {
+        unit: "tenthou",
+        width: 603,
+        level: 71,
+        label: "15,000 years"
+    },
+    {
+        unit: "tenthou",
+        width: 358,
+        level: 72,
+        label: "25,000 years"
+    },
+    {
+        unit: "tenthou",
+        width: 213,
+        level: 73,
+        label: "40,000 years"
+    },
+    {
+        unit: "tenthou",
+        width: 126,
+        level: 74,
+        label: "70,000 years"
+    },
+    {
+        unit: "tenthou",
+        width: 76,
+        level: 75,
+        label: "100,000 YEARS"
+    },
+    {
+        unit: "hundredthou",
+        width: 603,
+        level: 76,
+        label: "150,000 years"
+    },
+    {
+        unit: "hundredthou",
+        width: 358,
+        level: 77,
+        label: "250,000 years"
+    },
+    {
+        unit: "hundredthou",
+        width: 213,
+        level: 78,
+        label: "400,000 years"
+    },
+    {
+        unit: "hundredthou",
+        width: 126,
+        level: 79,
+        label: "700,000 years"
+    },
+    {
+        unit: "hundredthou",
+        width: 76,
+        level: 80,
+        label: "1 million years"
+    },
+    {
+        unit: "mill",
+        width: 603,
+        level: 81,
+        label: "1.5 million years"
+    },
+    {
+        unit: "mill",
+        width: 358,
+        level: 82,
+        label: "3 million years"
+    },
+    {
+        unit: "mill",
+        width: 213,
+        level: 83,
+        label: "4 million years"
+    },
+    {
+        unit: "mill",
+        width: 126,
+        level: 84,
+        label: "6 million years"
+    },
+    {
+        unit: "mill",
+        width: 76,
+        level: 85,
+        label: "10 million years"
+    },
+    {
+        unit: "tenmill",
+        width: 603,
+        level: 86,
+        label: "15 million years"
+    },
+    {
+        unit: "tenmill",
+        width: 358,
+        level: 87,
+        label: "25 million years"
+    },
+    {
+        unit: "tenmill",
+        width: 213,
+        level: 88,
+        label: "40 million years"
+    },
+    {
+        unit: "tenmill",
+        width: 126,
+        level: 89,
+        label: "70 million years"
+    },
+    {
+        unit: "tenmill",
+        width: 76,
+        level: 90,
+        label: "100 million years"
+    },
+    {
+        unit: "hundredmill",
+        width: 603,
+        level: 91,
+        label: "120 million years"
+    },
+    {
+        unit: "hundredmill",
+        width: 358,
+        level: 92,
+        label: "200 million years"
+    },
+    {
+        unit: "hundredmill",
+        width: 213,
+        level: 93,
+        label: "300 million years"
+    },
+    {
+        unit: "hundredmill",
+        width: 126,
+        level: 94,
+        label: "500 million years"
+    },
+    {
+        unit: "hundredmill",
+        width: 76,
+        level: 95,
+        label: "1 billion years"
+    },
+    {
+        unit: "bill",
+        width: 603,
+        level: 96,
+        label: "15 million years"
+    },
+    {
+        unit: "bill",
+        width: 358,
+        level: 97,
+        label: "30 million years"
+    },
+    {
+        unit: "bill",
+        width: 213,
+        level: 98,
+        label: "50 million years"
+    },
+    {
+        unit: "bill",
+        width: 126,
+        level: 99,
+        label: "80 million years"
+    },
+    {
+        unit: "bill",
+        width: 76,
+        level: 100,
+        label: "100 billion years"
+    }
 ];
 for (let z = 1; z < zoomTree.length; z++) {
     let zl = zoomTree[z];
@@ -165,7 +666,7 @@ let monthNamesLet = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8�
 function standard(cormax, cormin, cornumber) {
     let tmpmax, tmpmin, corstep, tmpstep, tmpnumber, temp, extranumber;
     if (cormax <= cormin)
-        return;
+        cormax = cormax + 1
     corstep = (cormax - cormin) / cornumber;
     if (Math.pow(10, parseInt(Math.log(corstep) / Math.log(10))) == corstep) {
         temp = Math.pow(10, parseInt(Math.log(corstep) / Math.log(10)));
@@ -212,6 +713,8 @@ function standard(cormax, cormin, cornumber) {
     return [cormax, cormin, cornumber];
 }
 
+
+
 /**
  * 获取事件中的最大最小值
  * @param {*} eventArr 事件arr 
@@ -239,6 +742,22 @@ function getMinAndMax(eventArr) {
     }
 }
 
+
+/**
+ * 碰撞检测
+ * @param {*} original 被检测物体的信息 
+ * @param {*} event 鼠标事件信息
+ */
+function collisionDetection(original, event) {
+    let dx = event.x - original.x;
+    let dy = event.y - original.y;
+    if (dx > 0 && dx < original.w && dy > 0 && dy < original.h) {
+        return true
+    } else {
+        return false
+    }
+}
+
 class TimeLine {
     constructor(opt, event) {
         let _opt = {
@@ -260,24 +779,19 @@ class TimeLine {
         this.ctx = this.canvas.getContext("2d");
         //event 参数
         this.event = Object.assign([], event)
-
-
         //y轴坐标信息
-        if (this.event.length > 0) {
-            let { min, max } = getMinAndMax(this.event)
-            this.scaleY = standard(max, min, 5)
-        } else {
-            this.scaleY = [5, 0, 5]
-        }
+        this.scaleY = [5, 0, 5]
 
-        this.listener = []//钩子函数
+        this.listener = [] //钩子函数
         this.isMousedown = false; //拖动mousedown标记
         this.isMousemove = false; //拖动mousemove标记
         this.mousedownCursor = null; //拖动mousedown的位置
-        this.returnTime = null; //mouseup返回时间
-        this.clickX = null;//点击事件x坐标
-        this.clickY = null;//点几事件y坐标
-        this.clickTrigger = false;//记录上一次click事件有没有发出去
+
+        this.mouseHoverX = null; //滑过事件
+        this.mouseHoverY = null;
+        this.mouseTrigger = false;
+
+
         this.render();
         this.canvas.addEventListener('mousewheel', this.mousewheelFunc.bind(this));
         this.canvas.addEventListener('mousedown', this.mousedownFunc.bind(this));
@@ -292,8 +806,6 @@ class TimeLine {
      * @param {*} event 
      */
     mousewheelFunc(event) {
-        this.clickX = null;
-        this.clickY = null;
         if (event && event.preventDefault) {
             event.preventDefault()
         } else {
@@ -314,7 +826,7 @@ class TimeLine {
                 this.opt.zoom = this.opt.minZoom;
             }
         }
-        this.trigger("zoomChange")
+        this.trigger("zoomChange", this.opt.zoom)
         this.refresh()
     }
 
@@ -323,18 +835,22 @@ class TimeLine {
      */
     mousedownFunc(e) {
         this.isMousedown = true;
-        this.mousedownCursor = this.getMousePos(e).x;//记住mousedown的位置
+        this.mousedownCursor = this.getMousePos(e).x; //记住mousedown的位置
     }
     /**
      * 拖动/鼠标hover显示 mousemove事件
      */
     mousemoveFunc(e) {
 
-        let { x: posX, y: posY } = this.getMousePos(e)
+        let {
+            x: posX,
+            y: posY
+        } = this.getMousePos(e)
+        this.mouseHoverX = posX;
+        this.mouseHoverY = posY;
         this.clearCanvas();
         if (this.isMousedown) { //拖动
-            this.clickX = null;
-            this.clickY = null;
+
             let diff_x = posX - this.mousedownCursor;
             this.opt.time = moment(this.opt.time).subtract(diff_x * zoomTree[this.opt.zoom]["spp"], "s").valueOf()
             this.render()
@@ -342,11 +858,6 @@ class TimeLine {
             this.mousedownCursor = posX;
         } else { //画虚线
             this.render()
-            // let diff_x = posX - this.canvasW / 2 - 20;
-            // if (posX > this.opt.borderleft) {
-            //     this.drawLine(posX, this.opt.borderTop, posX, this.canvasH - this.opt.xAxisH, "rgb(194, 202, 215)", 1);
-            //     this.drawTxt(posX, posY, moment(this.opt.time).add(diff_x * zoomTree[this.opt.zoom]["spp"], "s").format("YYYY-MM-DD hh:mm:ss"), "rgb(194, 202, 215)")
-            // }
         }
     }
     /**
@@ -368,11 +879,15 @@ class TimeLine {
      * @param {*} e 
      */
     mouseClickFunc(e) {
-        this.clickTrigger = false
-        let { x, y } = this.getMousePos(e)
+        let {
+            x,
+            y
+        } = this.getMousePos(e)
         this.clickX = x;
         this.clickY = y;
         this.refresh()
+        this.clickX = null;
+        this.clickY = null
     }
 
     /**
@@ -395,6 +910,8 @@ class TimeLine {
      * 渲染函数
      */
     render() {
+
+        this.eventFormat()
         this.clearCanvas()
         this.drawEvent()
         this.drawGraduation()
@@ -405,18 +922,18 @@ class TimeLine {
      */
     drawGraduation() {
         //时间轴刻度
-        let totalChunk = parseInt(this.canvasW / zoomTree[this.opt.zoom]["width"]) + 2, //总片数
+        let totalChunk = parseInt(this.canvasW / zoomTree[this.opt.zoom]["width"]) + 3, //总片数
             height = this.canvasH - this.opt.xAxisH, //xAxis的的起始高度
             chunkWidth = zoomTree[this.opt.zoom]["width"],
             chunkUnit = zoomTree[this.opt.zoom]["unit"],
             centerX = (this.canvasW - this.opt.borderleft) / 2 + this.opt.borderleft, //中间点
-            lastLeftX = 0,//上一次左边x
-            lastRightX = 0;//上一次右边x
+            lastLeftX = 0, //上一次左边x
+            lastRightX = 0; //上一次右边x
         for (let index = 0; index < totalChunk; index++) {
-            let width = chunkWidth,//当前大刻度宽度
-                label,//大刻度的label
-                _day,//当前大刻度的时间
-                graduationX;//刻度的x坐标
+            let width = chunkWidth, //当前大刻度宽度
+                label, //大刻度的label
+                _day, //当前大刻度的时间
+                graduationX; //刻度的x坐标
 
             //每个大刻度时间
             if (index == 0) {
@@ -438,7 +955,7 @@ class TimeLine {
                         break;
                     case 28:
                         width = Math.floor(chunkWidth);
-                    default:// 30 days
+                    default: // 30 days
                         width = Math.floor(chunkWidth + ((chunkWidth / 28) * 2));
                 }
             }
@@ -496,8 +1013,8 @@ class TimeLine {
             this.drawLine(graduationX, height, graduationX, (height + 25), "rgb(194, 202, 215)", 1);
 
             //画小刻度
-            let tperu,//小刻度的数量
-                dist;//小刻度宽度
+            let tperu, //小刻度的数量
+                dist; //小刻度宽度
             switch (chunkUnit) {
                 case "d":
                     tperu = 24;
@@ -508,7 +1025,8 @@ class TimeLine {
                 case "y":
                     tperu = 12;
                     break;
-                default: tperu = 10;
+                default:
+                    tperu = 10;
             }
             dist = width / tperu;
             if (dist > 8) {
@@ -576,30 +1094,96 @@ class TimeLine {
      * 画事件
      */
     drawEvent() {
-        let hasClick = false;//点击事件已经触发
-        this.event.forEach(event => {
-            let _x,
-                _y;
-            _x = (this.canvasW - this.opt.borderleft) / 2 + this.opt.borderleft - Math.floor((this.opt.time - event.time) / 1000 / zoomTree[this.opt.zoom]["spp"])
-            _y = this.canvasH - this.opt.xAxisH - (event.data / this.scaleY[0] * (this.canvasH - this.opt.xAxisH - this.opt.borderTop))
+        let hasClick = false; //标记点击事件已经触发
+        let hasMove = false; //标记鼠标滑过事件
+        this.eventFormatData.forEach(event => {
+            let _x = event.x,
+                _y = this.canvasH - this.opt.xAxisH - (event.data / this.scaleY[0] * (this.canvasH - this.opt.xAxisH - this.opt.borderTop));
 
-            this.drawPoint(_x, _y, 4, "rgb(194, 202, 215)");
-            let dx = this.clickX - _x;
-            let dy = this.clickY - _y;
-            let dis = Math.sqrt(dx * dx + dy * dy);
-            if (dis < 4 && hasClick === false) {
-                this.drawTxt(_x + 6, _y + 6, `数值:${event.data}`, "rgb(194, 202, 215)")
-                this.drawTxt(_x + 6, _y + 20, `日期:${moment(event.time).format("YYYY-MM-DD hh:mm:ss")}`, "rgb(194, 202, 215)")
-                if (this.clickTrigger == false) {
-                    this.trigger("clickEvent", event)
-                    this.clickTrigger = true
+            event.children.forEach(val => {
+                let _h = (val.data / this.scaleY[0] * (this.canvasH - this.opt.xAxisH - this.opt.borderTop))
+                this.drawRect(_x - 8, _y + val.data, 16, _h, val.color);
+                this.drawLine(_x - 8, _y + val.data + _h - 1, _x + 8, _y + _h + val.data - 1, "rgb(194, 202, 215)", 1)
+
+                //点击碰撞检测
+                if (hasClick == false) {
+                    let isCollision = collisionDetection({
+                        x: _x - 8,
+                        y: _y,
+                        w: 16,
+                        h: _h
+                    }, {
+                        x: this.clickX,
+                        y: this.clickY
+                    })
+                    if (isCollision) {
+                        // this.drawTxt(this.clickX, this.clickY, `数值:${val.info[0]}`, "rgb(194, 202, 215)")
+                        // this.drawTxt(this.clickX, this.clickY + 16, `日期:${moment(parseInt(val.time)).format("YYYY-MM-DD hh:mm:ss")}`, "rgb(194, 202, 215)")
+                        this.trigger("clickEvent", val)
+                        hasClick = true
+                    }
                 }
+                //滑过碰撞检测
+                if (hasMove == false) {
+                    let isCollision = collisionDetection({
+                        x: _x - 8,
+                        y: _y,
+                        w: 16,
+                        h: _h
+                    }, {
+                        x: this.mouseHoverX,
+                        y: this.mouseHoverY
+                    })
+                    if (isCollision) {
+                        this.drawTxt(this.mouseHoverX, this.mouseHoverY, `数值:${val.info[0]}`, "rgb(194, 202, 215)")
+                        this.drawTxt(this.mouseHoverX, this.mouseHoverY + 16, `日期:${moment(parseInt(val.time)).format("YYYY-MM-DD hh:mm:ss")}`, "rgb(194, 202, 215)")
+                        // this.trigger("mouseEvent", val)
+                        hasMove = true
+                    }
+                }
+                //把上层加上去 
+                _y += _h;
+            })
 
-            }
 
         })
     }
+    /**
+     *数据处理 相同x放一起
+     */
+    eventFormat() {
+        //事件处理
+        let _event = [];
+        this.event.forEach(event => {
+            event.x = (this.canvasW - this.opt.borderleft) / 2 + this.opt.borderleft - Math.floor((this.opt.time - event.time) / 1000 / zoomTree[this.opt.zoom]["spp"])
+        })
+        this.event.forEach(val => {
+            let isExist = false;
+            for (let index = 0; index < _event.length; index++) {
+                if (_event[index].x == val.x) {
+                    _event[index].children.push(val)
+                    _event[index].data += val.data;
+                    isExist = true
+                }
+            }
+            if (!isExist) {
+                _event.push({
+                    x: val.x,
+                    data: val.data,
+                    children: [val]
+                })
+            }
+        })
 
+        if (_event.length > 0) {
+            let {
+                min,
+                max
+            } = getMinAndMax(_event)
+            this.scaleY = standard(max, min, 5)
+        }
+        this.eventFormatData = _event
+    }
 
 
     /**
@@ -663,6 +1247,19 @@ class TimeLine {
         this.ctx.closePath();
         this.ctx.restore()
     }
+    /**
+     *  画矩形
+     * @param {*} x 起点x坐标 矩形左上角的顶点
+     * @param {*} y 起点y
+     * @param {*} width 宽度
+     * @param {*} height 高度
+     */
+    drawRect(x, y, width, height, color) {
+        this.ctx.save()
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(x, y, width, height);
+        this.ctx.restore()
+    }
 
 
     /**
@@ -677,6 +1274,15 @@ class TimeLine {
     refresh() {
         this.clearCanvas();
         this.render()
+    }
+    /**
+     * 重绘canvas
+     */
+    resize(width, height) {
+        this.canvasW = width;
+        this.canvasH = height;
+        console.log("resize")
+        this.refresh()
     }
     /**
      * 事件注册器
@@ -697,9 +1303,9 @@ class TimeLine {
         let args = Array.prototype.slice.apply(arguments).slice(1);
         let functions = this.listener[eventName];
 
-        if (!Array.isArray(functions)) return;//自定义事件名不存在
+        if (!Array.isArray(functions)) return; //自定义事件名不存在
 
-        functions.forEach(function(callback) {
+        functions.forEach(function (callback) {
             try {
                 callback.apply(this, args);
             } catch (e) {
@@ -708,3 +1314,5 @@ class TimeLine {
         })
     }
 }
+
+// export default TimeLine
